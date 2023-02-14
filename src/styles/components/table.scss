@@ -1,0 +1,378 @@
+@include block(toggle) {
+  max-height: 18px;
+  position: relative;
+  height: 100%;
+  cursor: pointer;
+  display: inline-block;
+
+  @include breakpoint(small only) {
+    margin-bottom: auto;
+  }
+
+  @include element(wrapper) {
+    @include block(text) {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 11px;
+      color: $color-primary-dark;
+      margin-left: 0.3em;
+    }
+  }
+
+  > input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    opacity: 0;
+  }
+
+  @include element(handler) {
+    width: 11px;
+    height: 11px;
+    background-color: $color-light-gray;
+    position: relative;
+
+    :before {
+      content: "";
+      color: $color-white;
+      text-shadow: 1px 1px $color-black;
+      font-family: tahoma;
+      font-size: 0.688em;
+    }
+  }
+
+  @include element(indicator) {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: $color-white;
+    top: 2px;
+    left: 2px;
+    border: 1px solid $color-disabled;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    text-align: center;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  > input:checked ~ .toggle__handler {
+    background: $color-primary-dark;
+    &:before {
+      content: "\2713\0020";
+      color: white;
+      height: 6px;
+      width: 1px;
+      position: absolute;
+      top: -4px;
+      right: 0;
+      left: 0;
+      bottom: 0;
+    }
+  }
+
+  input:checked + .toggle__handler__indicator:before {
+    content: "";
+  }
+}
+
+@include block(table) {
+  width: 100%;
+
+  @include element(wrapper) {
+    display: block;
+    background: $color-white;
+    box-shadow: 0px 0px 30px rgba(21, 53, 80, 0.12);
+    border-radius: 16px;
+    width: 100%;
+  }
+
+  @include element(actions) {
+    padding: 2em 0 1em 2em;
+  }
+
+  @include element(radios) {
+    margin: 1em 0;
+
+    @include breakpoint(medium down) {
+      @include xy-grid(vertical);
+      @include flex-align(null, null);
+      > div {
+        &:not(:last-child) {
+          margin-bottom: 1em;
+        }
+      }
+    }
+
+    @include breakpoint(medium up) {
+      @include xy-grid();
+      @include flex-align(null, middle);
+      > div {
+        &:not(:last-child) {
+          margin-right: 1em;
+        }
+      }
+    }
+  }
+
+  @include element(title) {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.375em;
+    line-height: 21px;
+    color: $color-black;
+  }
+
+  @include element(header) {
+    height: 40px;
+    border-bottom: solid 2px #eef3f6;
+
+    @include element(cell) {
+      font-size: 0.688em;
+      color: #869aac;
+      font-weight: 500;
+      line-height: 14px;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+
+      @include block(tooltip) {
+        background: $color-primary-dark;
+        border: 1px solid transparent;
+        border-radius: 5px;
+        width: fit-content;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 13px;
+        color: $color-white;
+        text-transform: initial;
+      }
+
+      @include element(sort) {
+        margin-left: 5px;
+      }
+    }
+  }
+
+  @include element(body) {
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    @include element(row) {
+      position: relative;
+      height: 47px;
+      &:not(:last-child) {
+        border-bottom: solid 2px $color-disabled;
+      }
+
+      @include modifier(selected) {
+        background-color: #fafafa;
+        // .button {
+        //   display: block !important;
+        // }
+      }
+
+      @include modifier(open) {
+        cursor: pointer;
+        &:hover {
+          background-color: #fafafa;
+          .button {
+            display: block;
+          }
+        }
+      }
+
+      @include modifier(close) {
+        background-color: rgba(0, 0, 0, 0.05);
+        cursor: not-allowed;
+        .address {
+          font-size: 12px !important;
+          font-weight: normal !important;
+          color: $color-gray !important;
+        }
+      }
+
+      @include block(link) {
+        font-style: normal;
+        white-space: nowrap;
+        @include modifier(hover) {
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      @include block(address) {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+        color: #327384;
+        text-decoration: underline;
+
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      @include block(avatar) {
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        margin-right: 1em;
+      }
+    }
+
+    @include block(number) {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 16px;
+      color: $color-black;
+    }
+
+    @include block(button) {
+      width: 100%;
+      height: 24px;
+      background: #ffffff;
+      border: 2px solid $color-primary-dark;
+      box-sizing: border-box;
+      border-radius: 100px;
+      display: none;
+
+      > span {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 11px;
+        color: $color-primary-dark;
+      }
+    }
+
+    @include element(cell) {
+      @include xy-grid(horizontal, false);
+      font-size: 0.688em;
+      color: $color-gray;
+
+      @include modifier(disabled) {
+        pointer-events: none;
+        cursor: not-allowed;
+      }
+
+      @include block(row_checkbox) {
+        display: none;
+        &:hover {
+          display: none;
+        }
+        &:checked ~ .check {
+          border: 2px solid #969696;
+        }
+
+        &:checked ~ .check::before {
+          background: #969696;
+        }
+
+        &:checked ~ label {
+          color: #969696;
+        }
+      }
+
+      @include block(label) {
+        display: block;
+        font-weight: 300;
+        font-size: 1.35em;
+        height: 20px;
+        z-index: 9;
+        cursor: pointer;
+
+        @include modifier(disabled) {
+          pointer-events: none;
+          cursor: not-allowed;
+        }
+
+        -webkit-transition: all 0.25s linear;
+      }
+      @include block(check) {
+        display: block;
+        position: absolute;
+        border: solid 1px #c5c5c5;
+        border-radius: 100%;
+        height: 16px;
+        width: 16px;
+        left: 20px;
+        z-index: 5;
+        transition: border 0.25s linear;
+        -webkit-transition: border 0.25s linear;
+
+        &:hover {
+          border: 2px solid #969696;
+        }
+
+        &:before {
+          display: block;
+          position: absolute;
+          content: "";
+          border-radius: 100%;
+          height: 10px;
+          width: 10px;
+          top: 1px;
+          left: 1px;
+          margin: auto;
+          transition: background 0.25s linear;
+          -webkit-transition: background 0.25s linear;
+        }
+      }
+
+      .fa-clone {
+        color: $color-dark-gray;
+        cursor: pointer;
+        font-weight: 300;
+
+        &:hover {
+          font-weight: 900;
+        }
+      }
+    }
+  }
+
+  @include element(pagination) {
+    @include xy-grid();
+    @include flex-align(spaced, middle);
+    font-size: 0.688em;
+    color: rgba(122, 122, 122, 0.5);
+    font-size: 13px;
+    line-height: 16px;
+
+    @include block(per_page) {
+      display: flex;
+      align-items: center;
+      color: #869aac;
+    }
+
+    @include block(page_index) {
+      color: $color-black;
+    }
+
+    @include block(select) {
+      width: 40px;
+      border: none;
+    }
+
+    @include element(wrapper) {
+      height: 40px;
+      background: $color-white;
+      border-radius: 0px 0px 16px 16px;
+
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+  }
+}

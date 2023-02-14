@@ -1,0 +1,17 @@
+{
+  "consensusAddress": "0x2aC1a9CaE1E1edBE4Ffd9134342a25C96283B07e",
+  "blockRewardAddress": "0xf8aBA2c68A1F7d128B4744FcbB95F6ED8b1DdDAd",
+  "web3": {
+    "fuseProvider": "https://mainnet-rpc.alltra.global"
+  },
+  "api": {
+    "boot": "https://bot.alltra.global/api/v1"
+  },
+  "reactGA": {
+    "trackingId": "G-LHHHX57LEJ",
+    "gaOptions": {
+      "testMode": true,
+      "debug": true
+    }
+  }
+}
